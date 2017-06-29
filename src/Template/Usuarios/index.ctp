@@ -18,11 +18,11 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('correo') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nombreReal') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('telefono') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fotoPerfil') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('username', ['Nombre de usuario']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('correo', ['Correo electrónico']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('nombreReal', ['Nombre']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('telefono', ['Teléfono']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('fotoPerfil', ['Foto de perfil']) ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>

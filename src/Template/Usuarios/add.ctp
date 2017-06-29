@@ -18,12 +18,12 @@
     <fieldset>
         <legend><?= __('Agregar Usuario') ?></legend>
         <?php
-            echo $this->Form->input('username');
-            echo $this->Form->input('correo');
-            echo $this->Form->input('nombreReal');
-            echo $this->Form->input('contrasena');
-            echo $this->Form->input('telefono');
-            echo $this->Form->input('fotoPerfil');
+            echo $this->Form->input('username', ['label' => 'Nombre de usuario']);
+            echo $this->Form->input('correo', ['type'=>'email' ,'label' => 'Correo electrónico']);
+            echo $this->Form->input('nombreReal', ['label' => 'Nombre']);
+            echo $this->Form->input('contrasena', ['type'=>'password' , 'label' => 'Contraseña']);
+            echo $this->Form->input('telefono', ['type'=>'tel' ,'label' => 'Teléfono']);
+            echo $this->Form->input('fotoPerfil', ['label' => 'Foto de perfil']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Registrarse')) ?>
