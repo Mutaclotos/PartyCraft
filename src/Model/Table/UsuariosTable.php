@@ -33,11 +33,15 @@ class UsuariosTable extends Table
         parent::initialize($config);
 
         $this->table('usuarios');
-        $this->displayField('username');
-        $this->primaryKey('username');
+        $this->displayField('id');
+        $this->primaryKey('id');
 
         $this->hasMany('Comentarios', [
-            'foreignKey' => 'usuario_id'
+            'foreignKey' => 'usuario_comentario'
+        ]);
+        
+        $this->hasMany('Favoritos', [
+            'foreignKey' => 'usuario_favorito'
         ]);
     }
 
@@ -50,8 +54,13 @@ class UsuariosTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('username', 'create');
+            ->allowEmpty('id', 'create');
 
+        $validator
+            ->requirePresence('username', 'create')
+            ->notEmpty('username')
+            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+        
         $validator
             ->requirePresence('correo', 'create')
             ->notEmpty('correo')

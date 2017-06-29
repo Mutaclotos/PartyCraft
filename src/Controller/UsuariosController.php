@@ -18,12 +18,13 @@ class UsuariosController extends AppController
      */
     public function index()
     {
-        /*$usuarios = $this->paginate($this->Usuarios);
-
-        $this->set(compact('usuarios'));
+        $usuarios = $this->paginate($this->Usuarios);
+        //$usuarios = $this->Usuarios->find('all');
+        $this->set('usuarios', $usuarios);
+        
+        
+        /*$this->set(compact('usuarios'));
         $this->set('_serialize', ['usuarios']);*/
-        echo "Listado de usuarios";
-        exit();
     }
 
     /**
@@ -54,13 +55,14 @@ class UsuariosController extends AppController
     {
         $usuario = $this->Usuarios->newEntity();
         if ($this->request->is('post')) {
+            debug($this->request->data);
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->data);
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('El usuario ha sido guardado.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Usuarios','action' => 'index']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('El usuario no pudo ser guardado. Por favor, intente nuevamente.'));
         }
         $this->set(compact('usuario'));
         $this->set('_serialize', ['usuario']);
