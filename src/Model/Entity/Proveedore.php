@@ -11,6 +11,8 @@ use Cake\ORM\Entity;
  * @property int $puntajeGlobal
  * @property string $descripcion
  * @property string $ubicacion
+ * @property float $latitud
+ * @property float $longitud
  * @property string $logo
  */
 class Proveedore extends Entity

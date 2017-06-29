@@ -65,6 +65,16 @@ class ProveedoresTable extends Table
             ->notEmpty('ubicacion');
 
         $validator
+            ->numeric('latitud')
+            ->requirePresence('latitud', 'create')
+            ->notEmpty('latitud');
+
+        $validator
+            ->numeric('longitud')
+            ->requirePresence('longitud', 'create')
+            ->notEmpty('longitud');
+
+        $validator
             ->allowEmpty('logo');
 
         return $validator;

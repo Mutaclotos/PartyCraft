@@ -22,6 +22,8 @@ class ProveedoresFixture extends TestFixture
         'puntajeGlobal' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'descripcion' => ['type' => 'string', 'length' => 512, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'ubicacion' => ['type' => 'string', 'length' => 128, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'latitud' => ['type' => 'float', 'length' => null, 'precision' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
+        'longitud' => ['type' => 'float', 'length' => null, 'precision' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
         'logo' => ['type' => 'string', 'length' => 512, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
@@ -45,6 +47,8 @@ class ProveedoresFixture extends TestFixture
             'puntajeGlobal' => 1,
             'descripcion' => 'Lorem ipsum dolor sit amet',
             'ubicacion' => 'Lorem ipsum dolor sit amet',
+            'latitud' => 1,
+            'longitud' => 1,
             'logo' => 'Lorem ipsum dolor sit amet'
         ],
     ];
