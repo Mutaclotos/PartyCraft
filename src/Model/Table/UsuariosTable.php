@@ -74,9 +74,12 @@ class UsuariosTable extends Table
             ->requirePresence('contrasena', 'create')
             ->notEmpty('contrasena');
 
-        $validator
+        $validator //TODO: CORRECT THIS MESS
             ->requirePresence('telefono', 'create')
-            ->notEmpty('telefono');
+            ->notEmpty('telefono')
+            ->add('reg_no', 'validFormat', [
+                'rule' => ['custom', '/^\d{4}-?\d{4}$/gm'],
+                'message' => 'Por favor ingrese un número de teléfono válido.']);
 
         $validator
             ->allowEmpty('fotoPerfil');
