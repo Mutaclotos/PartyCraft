@@ -31,6 +31,13 @@ class FavoritosTable extends Table
         parent::initialize($config);
 
         $this->table('favoritos');
+        $this->belongsTo('Usuarios', [
+                'foreignKey' => 'usuario_favorito',
+                'joinType' => 'INNER']);
+                
+        $this->hasOne('Proveedores', [
+                'foreignKey' => 'proveedor_favorito',
+                'joinType' => 'INNER']);
     }
 
     /**
