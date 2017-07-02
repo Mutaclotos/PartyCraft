@@ -94,7 +94,7 @@ class UsuariosController extends AppController
         if ($this->request->is('post')) {
             debug($this->request->data);
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->data);
-            debug($usuario); die;
+            //debug($usuario); die;
             if ($this->Usuarios->save($usuario)) {
                 $this->Flash->success(__('El usuario ha sido guardado.'));
 

@@ -58,25 +58,25 @@ class UsuariosTable extends Table
 
         $validator
             ->requirePresence('username', 'create')
-            ->notEmpty('username')
+            ->notEmpty('username', 'Rellene este campo')
             ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
         
         $validator
             ->requirePresence('correo', 'create')
-            ->notEmpty('correo')
+            ->notEmpty('correo', 'Rellene este campo')
             ->add('correo', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->requirePresence('nombreReal', 'create')
-            ->notEmpty('nombreReal');
+            ->notEmpty('nombreReal', 'Rellene este campo');
 
         $validator
             ->requirePresence('contrasena', 'create')
-            ->notEmpty('contrasena');
+            ->notEmpty('contrasena', 'Rellene este campo', 'create');
 
         $validator //TODO: CORRECT THIS MESS
             ->requirePresence('telefono', 'create')
-            ->notEmpty('telefono')
+            ->notEmpty('telefono', 'Rellene este campo')
             ->add('reg_no', 'validFormat', [
                 'rule' => ['custom', '/^\d{4}-?\d{4}$/gm'],
                 'message' => 'Por favor ingrese un número de teléfono válido.']);
