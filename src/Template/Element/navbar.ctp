@@ -12,5 +12,13 @@
       </li>
       <li><a href="#">Page 3</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+              <li>
+                   <?= $this->Html->link('Ingresar', ['controller' => 'Usuarios', 'action' => 'login']) ?>
+              </li>
+              <li>
+                   <?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?>
+              </li>
+    </ul>
   </div>
 </nav>

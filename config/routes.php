@@ -76,6 +76,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::scope("/usuarios", function($routes){
+    $routes->connect('/', ['controller' => 'Usuarios', 'action' => 'home']);
     $routes->connect('/index', ['controller' => 'Usuarios', 'action' => 'index']);
     $routes->connect('/view/*', ['controller' => 'Usuarios', 'action' => 'view']);
 });
