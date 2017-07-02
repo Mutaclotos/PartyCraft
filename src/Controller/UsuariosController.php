@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Usuarios Controller
@@ -10,6 +11,15 @@ use App\Controller\AppController;
  */
 class UsuariosController extends AppController
 {
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        // Allow users to register and logout.
+        // You should not add the "login" action to allow list. Doing so would
+        // cause problems with normal functioning of AuthComponent.
+        $this->Auth->allow(['index', 'view', 'display', 'home', 'add']);
+    }
 
     public function login()
     {
@@ -84,6 +94,7 @@ class UsuariosController extends AppController
         if ($this->request->is('post')) {
             debug($this->request->data);
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->data);
+            debug($usuario); die;
             if ($this->Usuarios->save($usuario)) {
                 $this->Flash->success(__('El usuario ha sido guardado.'));
 

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <?= $this->Html->link('PartyCraft', ['controller' => 'Usuarios', 'action' => 'index'], ['class' => 'navbar-brand']) ?>
+      <?= $this->Html->link('PartyCraft', ['controller' => 'Usuarios', 'action' => 'home'], ['class' => 'navbar-brand']) ?>
     </div>
     <ul class="nav navbar-nav">
       <li>

@@ -29,13 +29,18 @@ class Usuario extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
+        'username' => true,
+        'contrasena' => true,
+        'nombreReal' => true,
+        'correo' => true,
+        'fotoPerfil' => true,
         'id' => false
     ];
     
-    protected function _setPassword($value)
+    protected function _setPassword($contrasena)
     {
-        $hasher = new DefaultPasswordHasher();
-        return $hasher->hash($value);
+        if (strlen($contrasena) > 0) {
+            return (new DefaultPasswordHasher)->hash($contrasena);
+        }
     }
 }
