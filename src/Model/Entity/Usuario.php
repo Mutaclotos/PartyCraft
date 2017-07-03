@@ -34,9 +34,10 @@ class Usuario extends Entity
         'nombreReal' => true,
         'correo' => true,
         'fotoPerfil' => true,
+        'telefono' => true,
         'id' => false
     ];
-    
+    /*
     protected function _setPassword($contrasena)
     {
         if (strlen($contrasena) > 0) {
@@ -44,7 +45,7 @@ class Usuario extends Entity
             }
         
     }
-    
+    */
     protected function _setContrasena($contrasena)
     {
         if (strlen($contrasena) > 0) {
@@ -53,13 +54,5 @@ class Usuario extends Entity
         
     }
     
-    /*public function beforeSave($options = array()) {
-            if(isset($this->data[$this->alias]['contrasena'])){
-                $passwordHasher = new DefaultPasswordHasher();
-                $this->data[$this->alias]['contrasena'] = $passwordHasher->hash(
-                    $this->data[$this->alias]['contrasena']
-                        );      
-            }
-            return true;
-        }*/
+  
 }

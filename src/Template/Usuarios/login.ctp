@@ -1,4 +1,4 @@
-<?= $this->Html->css('login') ?>
+
 
 <div class="text-center" style="padding:50px 0">
 	<div class="logo">Iniciar sesión</div>
