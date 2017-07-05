@@ -17,34 +17,32 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
-
-
-
-    <!-- core CSS -->
-    <?= $this->Html->css(['font-awesome.min.css', 'stylesheet']) ?>  
-    <?= $this->Html->css(['animate.min.css', 'stylesheet']) ?> 
-    <?= $this->Html->css(['prettyPhoto.css', 'stylesheet']) ?> 
-    <?= $this->Html->css(['main.css', 'stylesheet']) ?> 
-    <?= $this->Html->css(['responsive.css', 'stylesheet']) ?> 
-    <?= $this->Html->css(['bootstrap.min.css', 'stylesheet']) ?>
-    <?= $this->Html->script(['jquery-3.2.1.min', 'bootstrap.min']) ?>
-
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <?= $this->Html->charset() ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            <?= $cakeDescription ?>:
+            <?= $this->fetch('title') ?>
+        </title>
+        
+        <!-- core CSS -->
+        <?= $this->Html->css(['font-awesome.css', 'stylesheet']) ?>  
+        <?= $this->Html->css(['animate.min.css', 'stylesheet']) ?> 
+        <?= $this->Html->css(['prettyPhoto.css', 'stylesheet']) ?> 
+        <?= $this->Html->css(['main.css', 'stylesheet']) ?> 
+        <?= $this->Html->css(['responsive.css', 'stylesheet']) ?> 
+        <?= $this->Html->css(['bootstrap.min.css', 'stylesheet']) ?>
+        <?= $this->Html->script(['jquery-3.2.1.min', 'bootstrap.min']) ?>
+    
+        <?= $this->Html->meta('icon') ?>
+        <?= $this->fetch('meta') ?>
+        <?= $this->fetch('css') ?>
+        <?= $this->fetch('script') ?>
+    </head>
 <body>
     
     <header id="header">
@@ -57,13 +55,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand"  <?= $this->Html->link('PartyCraft', ['controller' => 'Usuarios', 'action' => 'home'], ['class' => 'navbar-brand']) ?>>
+                    <a class="navbar-brand"  <?= $this->Html->link('PartyCraft', ['controller' => 'Pages', 'action' => 'home'], ['class' => 'navbar-brand']) ?>>
                         <img src="images/logo.png" alt="logo"></a>
                 </div>
 				
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="home.ctp">Home</a></li>
+                        <li class="active"><?= $this->Html->link('Inicio', ['controller' => 'Pages', 'action' => 'home']) ?></li>
                         <li><?= $this->Html->link('Ver usuarios', ['controller' => 'Usuarios', 'action' => 'index']) ?></li>
                         <li><a href="">Services</a></li>
                         <li class="dropdown">

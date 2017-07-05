@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\ORM\TableRegistry;
 
 /**
  * Usuario Entity
@@ -48,10 +49,16 @@ class Usuario extends Entity
     */
     protected function _setContrasena($contrasena)
     {
-        if (strlen($contrasena) > 0) {
-                return (new DefaultPasswordHasher)->hash($contrasena);
-            }
-        
+        if (!empty($contrasena)) 
+        {
+            return (new DefaultPasswordHasher)->hash($contrasena);
+        }
+        else
+        {
+            $id_usuario = $this->_properties['id'];
+            $usuario = TableRegistry::get('Usuarios')->recoverPassword($id_usuario);
+            return $usuario;
+        }
     }
     
   

@@ -18,7 +18,8 @@ class UsuariosController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['index', 'view', 'display', 'home', 'add']);
+        //Por ahora se permite acceder todo sin autenticacion. Luego cambiamos esto.
+        $this->Auth->allow(['index', 'view', 'display', 'home', 'add', 'edit']);
     }
 
     public function login()
@@ -100,7 +101,7 @@ class UsuariosController extends AppController
 
                 return $this->redirect(['controller' => 'Usuarios','action' => 'index']);
             }
-            $this->Flash->error(__('El usuario no pudo ser guardado. Por favor, intente nuevamente.'));
+            $this->Flash->error(__('El usuario no pudo ser guardado. Por favor, inténtelo nuevamente.'));
         }
         $this->set(compact('usuario'));
         $this->set('_serialize', ['usuario']);
@@ -121,11 +122,11 @@ class UsuariosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->data);
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('El perfil fue modificado exitósamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('El perfil no pudo ser modificado. Por favor, inténtelo nuevamente.'));
         }
         $this->set(compact('usuario'));
         $this->set('_serialize', ['usuario']);

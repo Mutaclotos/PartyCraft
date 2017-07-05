@@ -24,7 +24,7 @@
 						<label for="lg_remember">remember</label>
 					</div>
 				</div>
-				<?= $this->Form->button('>', ['class' => ['login-button', 'fa fa-chevron-right']]) ?>
+				<?= $this->Form->button('', ['class' => ['login-button', 'fa fa-chevron-right']]) ?>
 			</div>
 			<div class="etc-login-form">
 				<p>forgot your password? <a href="#">click here</a></p>

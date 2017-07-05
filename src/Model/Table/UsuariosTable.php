@@ -54,29 +54,32 @@ class UsuariosTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('id', 'create');
+            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->notEmpty('id', 'create');
 
         $validator
             ->requirePresence('username', 'create')
-            ->notEmpty('username', 'Rellene este campo')
+            ->notEmpty('username', 'Este campo no puede estar vacío.')
             ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
         
         $validator
             ->requirePresence('correo', 'create')
             ->notEmpty('correo', 'Rellene este campo')
+            ->add('correo', 'valid', ['rule' => 'email', 'message' => 'Ingrese un correo electrónico válido.'])
             ->add('correo', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->requirePresence('nombreReal', 'create')
-            ->notEmpty('nombreReal', 'Rellene este campo');
+            ->notEmpty('nombreReal', 'Este campo no puede estar vacío.');
 
         $validator
             ->requirePresence('contrasena', 'create')
-            ->notEmpty('contrasena', 'Rellene este campo', 'create');
+            ->add('contrasena', 'length', ['rule' => ['lengthBetween', 6, 12]])
+            ->notEmpty('contrasena', 'Este campo no puede estar vacío.', 'create');
 
         $validator //TODO: CORRECT THIS MESS
             ->requirePresence('telefono', 'create')
-            ->notEmpty('telefono', 'Rellene este campo');
+            ->notEmpty('telefono', 'Este campo no puede estar vacío.');
             /*->add('reg_no', 'validFormat', [
                 'rule' => ['custom', '/^\d{4}-?\d{4}$/gm'],
                 'message' => 'Por favor ingrese un número de teléfono válido.']);*/
@@ -96,9 +99,15 @@ class UsuariosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->isUnique(['correo']));
-
+        $rules->add($rules->isUnique(['username'], 'Ya existe un usuario con este nombre de usuario.'));
+        $rules->add($rules->isUnique(['correo'], 'Ya existe un usuario con este correo electrónico.'));
+        $rules->add($rules->isUnique(['contrasena'], 'Ya existe un usuario con esta contraseña.'));
         return $rules;
+    }
+    
+        public function recoverPassword($id)
+    {
+        $usuario = $this->get($id);
+        return $usuario->contrasena;
     }
 }
