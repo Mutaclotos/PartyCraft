@@ -1,5 +1,5 @@
 
-
+<div class="container clearfix"> 
 <div class="text-center" style="padding:50px 0">
 	<div class="logo">Iniciar sesión</div>
 	<!-- Main Form -->
@@ -31,4 +31,5 @@
 				<?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?>
 			</div>
 		<?= $this->Form->end() ?>
+	</div>
 	</div>

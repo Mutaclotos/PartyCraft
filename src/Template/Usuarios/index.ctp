@@ -1,3 +1,4 @@
+<div class="container clearfix"> 
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
@@ -47,4 +48,5 @@
             <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
         </div>
     </div>
+</div>
 </div>

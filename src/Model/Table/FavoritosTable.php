@@ -31,6 +31,9 @@ class FavoritosTable extends Table
         parent::initialize($config);
 
         $this->table('favoritos');
+        $this->displayField('id');
+        $this->primaryKey('id');
+        
         $this->belongsTo('Usuarios', [
                 'foreignKey' => 'usuario_favorito',
                 'joinType' => 'INNER']);
@@ -48,6 +51,10 @@ class FavoritosTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator
+            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->notEmpty('id', 'create');
+        
         $validator
             ->requirePresence('nombreUsuario', 'create')
             ->notEmpty('nombreUsuario');

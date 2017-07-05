@@ -11,6 +11,26 @@ use App\Controller\AppController;
 class FavoritosController extends AppController
 {
 
+
+    public function isAuthorized($usuario)
+    {
+            if(in_array($this->request->action, ['add', 'index']))
+            {
+                return true;
+            }
+            if (in_array($this->request->action, ['edit', 'delete']))
+            {
+                $id = $this->request->params['pass'][0];
+                $favorito = $this->Favoritos->get($id);
+                if ($favorito->nombreUsuario == $usuario['id'])
+                {
+                    return true;
+                }
+            }
+        
+        return parent::isAuthorized($usuario);
+    }
+
     /**
      * Index method
      *
@@ -19,12 +39,13 @@ class FavoritosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Usuarios']
+            'conditions'  => ['id' => $this->Auth->User('id')],
+            'order' => ['id' => 'desc']
         ];
-        $favoritos = $this->paginate($this->Favoritos);
-
-        $this->set(compact('favoritos'));
-        $this->set('_serialize', ['favoritos']);
+        //$favoritos = $this->paginate($this->Favoritos);
+        $this->set('favoritos', $this->paginate($this->Favoritos));
+        /*$this->set(compact('favoritos'));
+        $this->set('_serialize', ['favoritos']);*/
     }
 
     /**
