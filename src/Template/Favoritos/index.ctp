@@ -9,7 +9,7 @@
 		<ul class="list-group">
 			<?php foreach ($favoritos as $favorito): ?>
 			<li class="list-group-item">
-				<h4 class="list-group-item-heading"><?= h($favorito->nombreUsuario) ?></h4>
+				<!--<h4 class="list-group-item-heading"><?= h($favorito->nombreUsuario) ?></h4>-->
 				<p class="list-group-item-text">
 					<?= h($favorito->idProveedor) ?>
                 </p>

@@ -38,7 +38,7 @@ class FavoritosTable extends Table
                 'foreignKey' => 'usuario_favorito',
                 'joinType' => 'INNER']);
                 
-        $this->hasOne('Proveedores', [
+        $this->belongsTo('Proveedores', [
                 'foreignKey' => 'proveedor_favorito',
                 'joinType' => 'INNER']);
     }

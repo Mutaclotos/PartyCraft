@@ -70,10 +70,18 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                     <li><a href="blog-item.html">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li> <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?></li>  
-                            <li><?= $this->Html->link('Crear Sesión', ['controller' => 'Usuarios', 'action' => 'add']) ?></li>
-                            <li><?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?></li>
-                            
+                            <?php if(isset($current_user)): ?>
+                                <li>
+                                    <?= $this->Html->link('Mis favoritos', ['controller' => 'Favoritos', 'action' => 'index']) ?>
+                                </li>
+                                
+                                <li><?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?></li>
+                            <?php else: ?>
+
+                                <li> <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?></li>  
+                                <li><?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?></li>
+
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div><!--/.container-->

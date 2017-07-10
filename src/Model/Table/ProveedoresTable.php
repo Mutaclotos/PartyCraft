@@ -33,6 +33,14 @@ class ProveedoresTable extends Table
         $this->table('proveedores');
         $this->displayField('id');
         $this->primaryKey('id');
+        
+        $this->hasMany('Categorias_proveedor', [
+            'foreignKey' => 'proveedor_categoria'
+        ]);
+        
+        $this->hasMany('Favoritos', [
+            'foreignKey' => 'proveedor_favorito'
+        ]);
     }
 
     /**

@@ -1,1 +1,1 @@
-<h2>Bienvenido a PartyCraft!</h2>
+<h2>Bienvenido a PartyCraft <?= $this->Html->link($current_user['username'], ['controller' => 'Favoritos', 'action' => 'index', $current_user['id']]) ?></h2>

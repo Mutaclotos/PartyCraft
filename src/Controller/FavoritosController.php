@@ -38,10 +38,20 @@ class FavoritosController extends AppController
      */
     public function index()
     {
+        /*$query = $this->Favoritos->find('all')
+        ->where(['nombreUsuario' => $this->Auth->User('id')])
+        ->order(['Favoritos.id' => 'desc'])
+        ->contain([
+            'Proveedores.nombre'
+        ]);
+        
+        $this->paginate = [$query];*/
+        
         $this->paginate = [
-            'conditions'  => ['id' => $this->Auth->User('id')],
+            'conditions'  => ['nombreUsuario' => $this->Auth->User('id')],
             'order' => ['id' => 'desc']
         ];
+        
         //$favoritos = $this->paginate($this->Favoritos);
         $this->set('favoritos', $this->paginate($this->Favoritos));
         /*$this->set(compact('favoritos'));
