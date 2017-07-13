@@ -63,7 +63,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                         <ul class="nav navbar-nav">
                             <li class="active"><?= $this->Html->link('Inicio', ['controller' => 'Pages', 'action' => 'home']) ?></li>
                             <li><?= $this->Html->link('Ver usuarios', ['controller' => 'Usuarios', 'action' => 'index']) ?></li>
-                            <li><a href="">Services</a></li>
+                            <li><?= $this->Html->link('Ver proveedores', ['controller' => 'Proveedores', 'action' => 'index']) ?></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
@@ -78,8 +78,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                 <li><?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?></li>
                             <?php else: ?>
 
-                                <li> <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?></li>  
-                                <li><?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?></li>
+                                <li> <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?><span class="glyphicon glyphicon-log-in"></span></li>  
+                                <li><?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?><span class="glyphicon glyphicon-user"></li>
 
                             <?php endif; ?>
                         </ul>

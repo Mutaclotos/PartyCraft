@@ -18,10 +18,30 @@ class ProveedoresController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Categorias'); 
+        
         $proveedores = $this->paginate($this->Proveedores);
+        $categorias = $this->paginate($this->Categorias);
 
-        $this->set(compact('proveedores'));
-        $this->set('_serialize', ['proveedores']);
+        $this->set('proveedores', $proveedores);
+        $this->set('categorias', $categorias);
+        //$this->set(compact('proveedores'));
+        //$this->set('_serialize', ['proveedores']);
+    }
+    
+    public function sortList($type)
+    {
+        if($type == 'nombre')
+        {
+            $this->paginate = ['order' => ['nombre' => 'asc']];
+            //$this->Favoritos->find('all', ['contain' => ['favoritos.idProveedor'], 'order' => ['favoritos.name' => 'ASC']
+        }
+        else
+        {
+            $this->paginate = ['order' => ['puntaje' => 'desc']];
+        }
+        $proveedores = $this->paginate($this->Proveedores);
+        $this->set('proveedores', $proveedores);
     }
 
     /**

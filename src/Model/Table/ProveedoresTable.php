@@ -39,7 +39,8 @@ class ProveedoresTable extends Table
         ]);
         
         $this->hasMany('Favoritos', [
-            'foreignKey' => 'proveedor_favorito'
+            'foreignKey' => 'proveedor_favorito',
+            'joinType' => 'INNER'
         ]);
     }
 

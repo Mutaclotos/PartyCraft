@@ -11,11 +11,11 @@
 			<li class="list-group-item">
 				<!--<h4 class="list-group-item-heading"><?= h($favorito->nombreUsuario) ?></h4>-->
 				<p class="list-group-item-text">
-					<?= h($favorito->idProveedor) ?>
+					<?= h($favorito) ?>
                 </p>
 				<br>
-				<?= $this->Html->link('Editar', ['controller' => 'Favoritos', 'action' => 'edit', $favorito->id], ['class' => 'btn btn-sm btn-primary']) ?>
-				<?= $this->Form->postLink('Eliminar', ['controller' => 'Favoritos', 'action' => 'delete', $favorito->id], ['confirm' => 'Eliminar enlace ?', 'class' => 'btn btn-sm btn-danger']) ?>
+				<!--<?= $this->Html->link('Editar', ['controller' => 'Favoritos', 'action' => 'edit', $favorito->id], ['class' => 'btn btn-sm btn-primary']) ?>-->
+				<?= $this->Form->postLink('Eliminar', ['controller' => 'Favoritos', 'action' => 'delete', $favorito->id], ['confirm' => '¿Eliminar favorito?', 'class' => 'btn btn-sm btn-danger']) ?>
 				</br>
 			</li>
 			<?php endforeach ?>
