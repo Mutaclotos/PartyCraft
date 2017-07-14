@@ -36,6 +36,7 @@
         			<?php foreach ($proveedores as $proveedor): ?>
         			<li class="list-group-item">
         				<h4 class="list-group-item-heading"><?= h($proveedor->nombre) ?></h4>
+        				<?= $this->Html->image($proveedor->logo); ?>
         				<h3 class="list-group-item-heading"><?= h($proveedor->puntajeGlobal) ?></h3>
         				<p class="list-group-item-text">
         					<?= h($proveedor->descripcion) ?>

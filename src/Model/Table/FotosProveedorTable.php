@@ -30,7 +30,14 @@ class FotosProveedorTable extends Table
     {
         parent::initialize($config);
 
+
         $this->table('fotos_proveedor');
+        $this->displayField('id');
+        $this->primaryKey('id');
+        
+        $this->belongsTo('Proveedores', [
+                'foreignKey' => 'id_Proveedor',
+                'joinType' => 'INNER']);
     }
 
     /**

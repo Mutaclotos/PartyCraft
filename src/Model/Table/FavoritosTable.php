@@ -39,7 +39,7 @@ class FavoritosTable extends Table
                 'joinType' => 'INNER']);
                 
         $this->belongsTo('Proveedores', [
-                'foreignKey' => 'proveedor_favorito',
+                'foreignKey' => 'idProveedor',
                 'joinType' => 'INNER']);
     }
 

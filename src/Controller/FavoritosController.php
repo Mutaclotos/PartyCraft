@@ -12,6 +12,10 @@ use Cake\ORM\TableRegistry;
 class FavoritosController extends AppController
 {
 
+    public function initialize() {
+        parent::initialize();
+        //rest of code
+    }
 
     public function isAuthorized($usuario)
     {
@@ -58,56 +62,17 @@ class FavoritosController extends AppController
                 
         $query = $this->Favoritos->find()
                                  ->contain(['Proveedores'])
-                                 ->select(['Proveedores.nombre'])
+                                 ->select(['Proveedores.id','Proveedores.nombre', 'Proveedores.puntajeGlobal', 'Proveedores.descripcion', 
+                                 'Proveedores.ubicacion', 'Proveedores.latitud', 'Proveedores.longitud', 'Proveedores.logo'])
                                  ->where(['Favoritos.nombreUsuario' => $this->Auth->User('id')]);
 
-        debug($query);
-        foreach ($query as $article) {
+        //debug($query);
+        /*foreach ($query as $article) {
             debug($article->created);
-        }
+        }*/
         $favoritos = $this->paginate($query);
-        //$favoritos = $query->toArray();
-        //debug($favoritos);
         $this->set('favoritos', $favoritos);
         
-        /*$query = $providers->find()
-        ->select(['Proveedores.nombre'])
-        
-        ->where(['Proveedores.id' => $this->idProveedor, 'Favoritos.nombreUsuario' => $this->Auth->User('id')])
-        ->order(['Favoritos.id' => 'desc']);*/
-        
-        
-        /*$this->set('favoritos', $this->Favoritos->find('all', ['contain' => ['favoritos.idProveedor'], 'order' => ['favoritos.name' => 'ASC']]));
-
-        $proveedor = $providers->find('all', ['conditions' => ['Proveedores.nombre' => 'favoritos']]);
-        //$this->set('page', $page->first());
-
-        $this->set(compact('favoritos','proveedores'));
-        $this->set('_serialize', ['favoritos','proveedores']);*/
-        
-        //Best result so far
-        /*$query = $providers->find()->contain(['Favoritos' => function ($q) {
-                    return $q->where(['Favoritos.nombreUsuario' => $this->Auth->User('id')]);
-                },
-                                            'Proveedores' => function ($q) {
-                    return $q->where(['Proveedores.id' => 'Favoritos.idProveedor']);
-                }]);*/
-        
-        //$this->paginate = [$query, 'maxLimit' => 10];
-        
-        //Best result so far
-        /*$this->paginate = [
-            'conditions'  => ['nombreUsuario' => $this->Auth->User('id')],
-            'order' => ['id' => 'desc']
-        ];*/
-        
-        //Best result so far
-        /*$favoritos = $this->paginate($this->Favoritos);
-        $this->set('favoritos', $favoritos);*/
-        
-        
-        //$this->set(compact('favoritos'));
-        /*$this->set('_serialize', ['favoritos']);*/
     }
 
     /**
@@ -145,8 +110,9 @@ class FavoritosController extends AppController
             $this->Flash->error(__('El proveedor no pudo ser guardado como favorito. Por favor inténtelo de nuevo.'));
         }
         $usuarios = $this->Favoritos->Usuarios->find('list', ['limit' => 200]);
-        $this->set(compact('favorito', 'usuarios'));
-        $this->set('_serialize', ['favorito']);
+        //$this->set(compact('favorito', 'usuarios'));
+        //$this->set('_serialize', ['favorito']);
+        $this->autoRender = false;
     }
 
     /**

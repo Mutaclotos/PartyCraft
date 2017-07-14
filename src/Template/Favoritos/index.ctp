@@ -9,14 +9,18 @@
 		<ul class="list-group">
 			<?php foreach ($favoritos as $favorito): ?>
 			<li class="list-group-item">
-				<!--<h4 class="list-group-item-heading"><?= h($favorito->nombreUsuario) ?></h4>-->
+				<h2 class="list-group-item-heading"><?= h($favorito->Proveedores->nombre) ?></h2>
+				<h3 class="list-group-item-heading"><?= h($favorito->Proveedores->puntajeGlobal) ?></h3>
 				<p class="list-group-item-text">
-					<?= h($favorito) ?>
+					<?= h($favorito->Proveedores->descripcion) ?>
+                </p>
+                <p class="list-group-item-text">
+					<?= h($favorito->Proveedores->ubicacion) ?>
                 </p>
 				<br>
-				<!--<?= $this->Html->link('Editar', ['controller' => 'Favoritos', 'action' => 'edit', $favorito->id], ['class' => 'btn btn-sm btn-primary']) ?>-->
-				<?= $this->Form->postLink('Eliminar', ['controller' => 'Favoritos', 'action' => 'delete', $favorito->id], ['confirm' => '¿Eliminar favorito?', 'class' => 'btn btn-sm btn-danger']) ?>
+				<?= $this->Form->postLink('Eliminar', ['controller' => 'Favoritos', 'action' => 'delete', $favorito->Proveedores->id], ['confirm' => '¿Eliminar favorito?', 'class' => 'btn btn-sm btn-danger']) ?>
 				</br>
+				<?= $this->Html->image($favorito->Proveedores->logo); ?>
 			</li>
 			<?php endforeach ?>
 		</ul>

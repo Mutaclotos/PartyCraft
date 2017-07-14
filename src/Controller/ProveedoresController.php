@@ -53,12 +53,38 @@ class ProveedoresController extends AppController
      */
     public function view($id = null)
     {
-        $proveedore = $this->Proveedores->get($id, [
+        $this->loadModel('Favoritos'); 
+        $this->loadModel('FotosProveedor'); 
+        
+        //Consulta para determinar si el usuario ya tiene a un proveedor como favorito
+        $query = $this->Favoritos->find()
+                                 ->contain(['Proveedores'])
+                                 ->select(['Favoritos.id'])
+                                 ->where(['Proveedores.id' => $id ,'Favoritos.nombreUsuario' => $this->Auth->User('id')]);
+        
+        //debug($query);
+        $results = $query->all();
+        $numResults = count($results);
+        $this->set('numResults', $numResults);
+        
+        //Consulta para cargar las imagenes del carrusel del proveedor
+        
+        $query = $this->FotosProveedor->find()
+                                 ->contain(['Proveedores'])
+                                 ->select(['FotosProveedor.id', 'FotosProveedor.foto', 'FotosProveedor.descripcion'])
+                                 ->where(['Proveedores.id' => $id]);
+        
+        //debug($query);
+        
+        $this->set('providerPics', $query);
+        
+        
+        $proveedor = $this->Proveedores->get($id, [
             'contain' => []
         ]);
 
-        $this->set('proveedore', $proveedore);
-        $this->set('_serialize', ['proveedore']);
+        $this->set('proveedor', $proveedor);
+        $this->set('_serialize', ['proveedor']);
     }
 
     /**
