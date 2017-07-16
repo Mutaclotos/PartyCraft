@@ -31,8 +31,13 @@ class CategoriasTable extends Table
         parent::initialize($config);
 
         $this->table('categorias');
-        $this->displayField('nombreCategoria');
-        $this->primaryKey('nombreCategoria');
+        $this->displayField('id');
+        $this->primaryKey('id');
+        
+        $this->hasMany('Categorias_proveedor', [
+            'foreignKey' => 'categoria_categoria'
+        ]);
+        
     }
 
     /**
@@ -44,7 +49,11 @@ class CategoriasTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('nombreCategoria', 'create');
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->requirePresence('nombreCategoria', 'create')
+            ->notEmpty('nombreCategoria');
 
         $validator
             ->requirePresence('descripcion', 'create')

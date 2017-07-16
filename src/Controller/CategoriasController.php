@@ -33,12 +33,26 @@ class CategoriasController extends AppController
      */
     public function view($id = null)
     {
-        $categoria = $this->Categorias->get($id, [
+        $this->loadModel('CategoriasProveedor'); 
+        $this->loadModel('Proveedores'); 
+        
+        $query = $this->CategoriasProveedor->find()
+                                             ->contain(['Categorias', 'Proveedores'])
+                                             ->select(['Proveedor.id', 'Proveedor.nombre', 'Proveedor.puntajeGlobal',
+                                             'Proveedor.descripcion', 'Proveedor.ubicacion'])
+                                             ->where(['Categorias.id' => $id]);
+        
+        //debug($query);
+        
+        $this->set('categoriaProveedores', $query);
+        $this->set('_serialize', ['categoriaProveedores']);
+        /*$categoria = $this->Categorias->get($id, [
             'contain' => []
         ]);
-
-        $this->set('categoria', $categoria);
-        $this->set('_serialize', ['categoria']);
+        
+        $this->set('categoria', $categoria);*/
+        $this->set(compact('categorias'));
+        $this->set('_serialize', ['categorias']);
     }
 
     /**

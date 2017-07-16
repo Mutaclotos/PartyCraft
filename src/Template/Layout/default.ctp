@@ -42,6 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
+        
     </head>
     <body>
         
@@ -61,9 +62,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     				
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="active"><?= $this->Html->link('Inicio', ['controller' => 'Pages', 'action' => 'home']) ?></li>
-                            <li><?= $this->Html->link('Ver usuarios', ['controller' => 'Usuarios', 'action' => 'index']) ?></li>
-                            <li><?= $this->Html->link('Ver proveedores', ['controller' => 'Proveedores', 'action' => 'index']) ?></li>
+                            <li class="<?php echo $this->Menu->activeClass('Pages', 'home') ?>">
+                                <?= $this->Html->link('Inicio', ['controller' => 'Pages', 'action' => 'home']) ?>
+                            </li>
+                            <li class="<?php echo $this->Menu->activeClass('Usuarios', 'index') ?>">
+                                <?= $this->Html->link('Ver usuarios', ['controller' => 'Usuarios', 'action' => 'index']) ?>
+                            </li>
+                            <li class="<?php echo $this->Menu->activeClass('Proveedores', 'index') ?>">
+                                <?= $this->Html->link('Ver proveedores', ['controller' => 'Proveedores', 'action' => 'index']) ?>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
@@ -71,15 +78,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                 </ul>
                             </li>
                             <?php if(isset($current_user)): ?>
-                                <li>
+                                <li class="<?php echo $this->Menu->activeClass('Favoritos', 'index') ?>">
                                     <?= $this->Html->link('Mis favoritos', ['controller' => 'Favoritos', 'action' => 'index']) ?>
                                 </li>
                                 
-                                <li><?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?></li>
+                                <li>
+                                    <?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?>
+                                </li>
                             <?php else: ?>
 
-                                <li> <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?><span class="glyphicon glyphicon-log-in"></span></li>  
-                                <li><?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?><span class="glyphicon glyphicon-user"></li>
+                                <li class="<?php echo $this->Menu->activeClass('Usuarios', 'login') ?>"> 
+                                    <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?><span class="glyphicon glyphicon-log-in"></span>
+                                </li>  
+                                <li class="<?php echo $this->Menu->activeClass('Usuarios', 'add') ?>">
+                                    <?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?><span class="glyphicon glyphicon-user"></span>
+                                </li>
 
                             <?php endif; ?>
                         </ul>

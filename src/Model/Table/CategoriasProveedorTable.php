@@ -31,6 +31,16 @@ class CategoriasProveedorTable extends Table
         parent::initialize($config);
 
         $this->table('categorias_proveedor');
+        $this->displayField('id');
+        $this->primaryKey('id');
+        
+        $this->belongsTo('Categorias', [
+            'foreignKey' => 'id_categoria'
+        ]);
+        
+        $this->belongsTo('Proveedores', [
+            'foreignKey' => 'id_proveedor'
+        ]);
     }
 
     /**

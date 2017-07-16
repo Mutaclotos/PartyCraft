@@ -18,6 +18,7 @@ class ProveedoresController extends AppController
      */
     public function index()
     {
+        $this->active_item = "index";
         $this->loadModel('Categorias'); 
         
         $proveedores = $this->paginate($this->Proveedores);
@@ -29,19 +30,29 @@ class ProveedoresController extends AppController
         //$this->set('_serialize', ['proveedores']);
     }
     
-    public function sortList($type)
+    public function sortByCategory($id = null)
     {
-        if($type == 'nombre')
-        {
-            $this->paginate = ['order' => ['nombre' => 'asc']];
-            //$this->Favoritos->find('all', ['contain' => ['favoritos.idProveedor'], 'order' => ['favoritos.name' => 'ASC']
-        }
-        else
-        {
-            $this->paginate = ['order' => ['puntaje' => 'desc']];
-        }
-        $proveedores = $this->paginate($this->Proveedores);
-        $this->set('proveedores', $proveedores);
+        $this->active_item = "sortByCategory";
+        $this->loadModel('CategoriasProveedor'); 
+        $this->loadModel('Categorias'); 
+        
+        $query = $this->CategoriasProveedor->find()
+                                             ->contain(['Categorias', 'Proveedores'])
+                                             ->select(['Proveedor.id', 'Proveedor.nombre', 'Proveedor.puntajeGlobal',
+                                             'Proveedor.descripcion', 'Proveedor.ubicacion'])
+                                             ->where(['Categorias.id' => $id]);
+        
+        debug($query);
+        
+        $this->set('categoriaProveedores', $query);
+        $this->set('_serialize', ['categoriaProveedores']);
+        /*$categoria = $this->Categorias->get($id, [
+            'contain' => []
+        ]);
+        
+        $this->set('categoria', $categoria);*/
+        /*$this->set(compact('categorias'));
+        $this->set('_serialize', ['categorias']);*/
     }
 
     /**
@@ -53,6 +64,7 @@ class ProveedoresController extends AppController
      */
     public function view($id = null)
     {
+        $this->active_item = "view";
         $this->loadModel('Favoritos'); 
         $this->loadModel('FotosProveedor'); 
         

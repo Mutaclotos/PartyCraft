@@ -83,8 +83,11 @@ class AppController extends Controller
      * @param \Cake\Event\Event $event The beforeRender event.
      * @return \Cake\Network\Response|null|void
      */
+    protected $active_item;
+     
     public function beforeRender(Event $event)
     {
+        
         $this->loadComponent('Auth');
         $this->set('current_user', $this->Auth->user());
         if (!array_key_exists('_serialize', $this->viewVars) &&
@@ -92,15 +95,18 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+        $this->set("active", $this->active_item);
     }
     
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['index', 'view', 'display', 'home', 'add', 'edit', 'sortList']);
+        $this->Auth->allow(['index', 'view', 'display', 'home', 'add', 'edit', 'sortList', 'ajaxGetProviders']);
     }
     
     public function isAuthorized($user)
     {
         return true;
     }
+    
+    
 }

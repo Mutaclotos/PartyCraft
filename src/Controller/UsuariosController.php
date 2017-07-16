@@ -56,6 +56,7 @@ class UsuariosController extends AppController
      */
     public function index()
     {
+        $this->active_item = "index";
         $usuarios = $this->paginate($this->Usuarios);
         //$usuarios = $this->Usuarios->find('all');
         $this->set('usuarios', $usuarios);
@@ -91,6 +92,7 @@ class UsuariosController extends AppController
      */
     public function add()
     {
+        $this->active_item = "add";
         $usuario = $this->Usuarios->newEntity();
         if ($this->request->is('post')) {
             debug($this->request->data);
@@ -116,6 +118,7 @@ class UsuariosController extends AppController
      */
     public function edit($id = null)
     {
+        $this->active_item = "edit";
         $usuario = $this->Usuarios->get($id, [
             'contain' => []
         ]);

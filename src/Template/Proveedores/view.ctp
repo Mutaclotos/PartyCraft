@@ -64,6 +64,7 @@
 			  </div>
 			
 			  <!-- Left and right controls -->
+			  <?php if($counter > 0): ?>
 			  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 			    <span class="glyphicon glyphicon-chevron-left"></span>
 			    <span class="sr-only">Previous</span>
@@ -72,6 +73,7 @@
 			    <span class="glyphicon glyphicon-chevron-right"></span>
 			    <span class="sr-only">Next</span>
 			  </a>
+			  <?php endif; ?>
 			</div>
 				
     	<!--AQUI VA LA SECCION DE COMENTARIOS-->

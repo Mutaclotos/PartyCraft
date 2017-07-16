@@ -110,9 +110,8 @@ class FavoritosController extends AppController
             $this->Flash->error(__('El proveedor no pudo ser guardado como favorito. Por favor inténtelo de nuevo.'));
         }
         $usuarios = $this->Favoritos->Usuarios->find('list', ['limit' => 200]);
-        //$this->set(compact('favorito', 'usuarios'));
-        //$this->set('_serialize', ['favorito']);
-        $this->autoRender = false;
+        $this->set(compact('favorito', 'usuarios'));
+        $this->set('_serialize', ['favorito', 'usuarios']);
     }
 
     /**
