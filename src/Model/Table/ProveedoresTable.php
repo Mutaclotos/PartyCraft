@@ -42,6 +42,10 @@ class ProveedoresTable extends Table
             'foreignKey' => 'id_Proveedor'
         ]);
         
+        $this->hasMany('Contactos_proveedor', [
+            'foreignKey' => 'id_Proveedor'
+        ]);
+        
         $this->hasMany('Favoritos', [
             'foreignKey' => 'proveedor_favorito',
             'joinType' => 'INNER'

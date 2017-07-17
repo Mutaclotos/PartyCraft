@@ -1,4 +1,3 @@
-<script type="text/javascript" src="ajax.js"></script>
 <div class="container clearfix"> 
     <div class="container">
         <div class="row">
@@ -10,26 +9,39 @@
 							<ul class="nav nav-tabs nav-stacked">
 								<!--<li class=""><a href="#tab1" data-toggle="tab" class="analistic-01">Responsive Web Design</a></li>
 								<li class=""><a href="#tab3" data-toggle="tab" class="tehnical">Predefine Layout</a></li>-->
+								<script>
+									function getCategoria(id) {
+										$.ajax({
+							                type:"POST",
+							                url: '<?= $this->Url->build('/Categorias/view/', true) ?>' + id,
+							                //dataType: 'categoriaProveedores',
+							                //async:false,
+							                success: function(data) {
+							                	$( '#provider-id' ).html(data);
+							                    alert('success: ' + JSON.stringify(data));
+							                },
+							                error: function (data) {
+							                    alert('error: ' + JSON.stringify(data));
+							                }
+							            });
+									}
+								</script>
 								 <?php foreach ($categorias as $categoria): ?>
-								<!--<li><?//= $this->Html->link($categoria->nombreCategoria, ['controller' => 'Categorias', 'action' => 'view', $categoria->id]) ?></li>-->
-								<li><?= $this->Html->link($categoria->nombreCategoria, ['data-ajax-url'
-																									=> $this->Url->build([
-																									'controller'=>'Proveedores',
-																									'action'=>'sortByCategory',
-																									'_ext' => 'json', $categoria->id]) 
-																									]) ?></li>
+								<!--<li><//?= $this->Html->link($categoria->nombreCategoria, ['controller' => 'Categorias', 'action' => 'view', $categoria->id]) ?></li>-->
+								<li><a onclick="getCategoria(<?= $categoria->id ?>);"><?= $categoria->nombreCategoria ?></a></li>
 								<?php endforeach ?>
 		
 							</ul>
 						</div>
 					  </div>
-					<div class="parrent media-body">
+					<div id="provider-id" class="parrent media-body">
 						<div class="tab-content">
 						  <h4>Ordenar por: </h4>
 						  <?= $this->Paginator->sort('nombre', ['Nombre']) ?>
 						  <?= $this->Paginator->sort('puntajeGlobal', ['Puntaje'], ['direction' => 'desc']) ?>
 							<ul class="list-group">
 							<?php foreach ($proveedores as $proveedor): ?>
+							
 								<div class="tab-pane">
 									<div class="media">
 										<div class="media-body">
@@ -41,8 +53,17 @@
 													<?= h($proveedor->descripcion) ?></p>
 												<p class="list-group-item-text">
 													<?= h($proveedor->ubicacion) ?></p>
+												<p class="list-group-item-text">
+													
+													<?php 
+													$contactos = $this->Menu->getContacts($this->name, $proveedor->id);
+													
+													foreach ($contactos as $contacto): ?>
+														<?= h($contacto->descripcion).': '.h($contacto->contacto).'  '  ?>
+													<?php endforeach ?>	
+												</p>
 												<br>
-												<?= $this->Html->link('Ver más', ['controller' => 'Proveedores', 'action' => 'view', $proveedor->id], ['class' => 'btn btn-sm btn-primary']) ?>
+													<?= $this->Html->link('Ver más', ['controller' => 'Proveedores', 'action' => 'view', $proveedor->id], ['class' => 'btn btn-sm btn-primary']) ?>
 												</br>
 											</li>
 										</div>

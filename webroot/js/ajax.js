@@ -1,6 +1,6 @@
 $( document ).ready(function() {
    //alert( "ready!" );
-    $('#devices-types-id').on('change', function() {
+    $('#provider-id').on('change', function() {
         alert( this.value ); 
 
          $.ajax({
@@ -18,3 +18,13 @@ $( document ).ready(function() {
 
     }); 
 }); 
+
+$.ajax({
+    url: 'http://partycraft-matiasrs.c9users.io/proveedores/view' + cid + '/', 
+    success: function(data){
+        if(data == "refresh")
+        {
+            window.location.reload();
+        }
+    }
+})

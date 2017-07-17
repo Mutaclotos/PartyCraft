@@ -31,8 +31,12 @@ class ContactosProveedorTable extends Table
         parent::initialize($config);
 
         $this->table('contactos_proveedor');
-        $this->displayField('id_proveedor');
-        $this->primaryKey('id_proveedor');
+        $this->displayField('id');
+        $this->primaryKey('id');
+        
+        $this->belongsTo('Proveedores', [
+                'foreignKey' => 'id_proveedor',
+                'joinType' => 'INNER']);
     }
 
     /**
@@ -44,8 +48,8 @@ class ContactosProveedorTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id_proveedor')
-            ->allowEmpty('id_proveedor', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
         $validator
             ->requirePresence('descripcion', 'create')

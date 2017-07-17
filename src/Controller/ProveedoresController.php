@@ -21,39 +21,16 @@ class ProveedoresController extends AppController
         $this->active_item = "index";
         $this->loadModel('Categorias'); 
         
+        
         $proveedores = $this->paginate($this->Proveedores);
         $categorias = $this->paginate($this->Categorias);
 
         $this->set('proveedores', $proveedores);
         $this->set('categorias', $categorias);
-        //$this->set(compact('proveedores'));
-        //$this->set('_serialize', ['proveedores']);
+        $this->set(compact('proveedores'));
+        $this->set('_serialize', ['proveedores']);
     }
     
-    public function sortByCategory($id = null)
-    {
-        $this->active_item = "sortByCategory";
-        $this->loadModel('CategoriasProveedor'); 
-        $this->loadModel('Categorias'); 
-        
-        $query = $this->CategoriasProveedor->find()
-                                             ->contain(['Categorias', 'Proveedores'])
-                                             ->select(['Proveedor.id', 'Proveedor.nombre', 'Proveedor.puntajeGlobal',
-                                             'Proveedor.descripcion', 'Proveedor.ubicacion'])
-                                             ->where(['Categorias.id' => $id]);
-        
-        debug($query);
-        
-        $this->set('categoriaProveedores', $query);
-        $this->set('_serialize', ['categoriaProveedores']);
-        /*$categoria = $this->Categorias->get($id, [
-            'contain' => []
-        ]);
-        
-        $this->set('categoria', $categoria);*/
-        /*$this->set(compact('categorias'));
-        $this->set('_serialize', ['categorias']);*/
-    }
 
     /**
      * View method
@@ -67,6 +44,18 @@ class ProveedoresController extends AppController
         $this->active_item = "view";
         $this->loadModel('Favoritos'); 
         $this->loadModel('FotosProveedor'); 
+        $this->loadModel('ContactosProveedor'); 
+        
+        //Consulta para obtener los contactos del proveedor
+        $query = $this->ContactosProveedor->find()
+                                             ->contain(['Proveedores'])
+                                             ->select(['ContactosProveedor.id',
+                                             'ContactosProveedor.descripcion', 'ContactosProveedor.contacto'])
+                                             ->where(['Proveedores.id' => $id]);
+        
+        //debug($query);
+        
+        $this->set('contactos', $query);
         
         //Consulta para determinar si el usuario ya tiene a un proveedor como favorito
         $query = $this->Favoritos->find()

@@ -16,6 +16,12 @@
             <p class="list-group-item-text">
 				<?= h($proveedor->ubicacion) ?>
             </p>
+            <?php foreach ($contactos as $contacto): ?>
+	            <p class="list-group-item-text">
+					<?= h($contacto->descripcion).': '.h($contacto->contacto).'  '  ?>
+	            </p>
+            <?php endforeach ?>
+            
             <?php if(isset($current_user)): ?>
             	<?php if($numResults == 0): ?>
 					<br>

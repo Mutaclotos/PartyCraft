@@ -99,19 +99,21 @@ class FavoritosController extends AppController
      */
     public function add()
     {
+        $this->autoRender = false;
         $favorito = $this->Favoritos->newEntity();
         if ($this->request->is('post')) {
             $favorito = $this->Favoritos->patchEntity($favorito, $this->request->data);
             if ($this->Favoritos->save($favorito)) {
                 $this->Flash->success(__('El proveedor ha sido guardado como favorito.'));
 
-                return $this->redirect(['action' => 'index']);
+                //return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('El proveedor no pudo ser guardado como favorito. Por favor inténtelo de nuevo.'));
         }
         $usuarios = $this->Favoritos->Usuarios->find('list', ['limit' => 200]);
         $this->set(compact('favorito', 'usuarios'));
         $this->set('_serialize', ['favorito', 'usuarios']);
+        echo 'refresh';
     }
 
     /**
