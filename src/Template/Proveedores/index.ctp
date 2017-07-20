@@ -52,7 +52,7 @@
 									}
 								</script>
 								 <?php foreach ($categorias as $categoria): ?>
-									<li><a onclick="getCategoria(<?= $categoria->id ?>);"><?= $categoria->nombreCategoria ?></a></li>
+									<li><a  onclick="getCategoria(<?= $categoria->id ?>);"><?= $categoria->nombreCategoria ?></a></li>
 								<?php endforeach ?>
 		
 							</ul>

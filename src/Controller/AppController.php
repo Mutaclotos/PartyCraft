@@ -60,11 +60,11 @@ class AppController extends Controller
             ],
             'authError' => 'Ingrese sus datos',
             'loginRedirect' => [
-                'controller' => 'Usuarios',
+                'controller' => 'Pages',
                 'action' => 'home'
             ],
             'logoutRedirect' => [
-                'controller' => 'Usuarios',
+                'controller' => 'Pages',
                 'action' => 'home'
             ]
         ]);

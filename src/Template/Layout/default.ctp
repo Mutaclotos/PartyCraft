@@ -61,7 +61,7 @@ $cakeDescription = 'PartyCraft!';
                              
                             
                     </div>
-    				<font size = '4'>
+    				<font size = '3'>
                     <div class="collapse navbar-collapse navbar-right text-center" >
                         <ul class="nav navbar-nav">
                             <li class="<?php echo $this->Menu->activeClass('Pages', 'home') ?>">
@@ -71,7 +71,7 @@ $cakeDescription = 'PartyCraft!';
                                 <//?= $this->Html->link('Ver usuarios', ['controller' => 'Usuarios', 'action' => 'index']) ?>
                             </li>-->
                             
-                            <li class="<?php echo $this->Menu->activeClass('Proveedores', 'search') ?>">
+                            <li class="<?php echo $this->Menu->activeClass('Proveedores', 'adsearch') ?>">
                                 <?= $this->Html->link('Crea tu evento', ['controller' => 'Proveedores', 'action' => 'adsearch']) ?>
                             </li>
                             
@@ -85,6 +85,9 @@ $cakeDescription = 'PartyCraft!';
                                 </ul>
                             </li>-->
                             <?php if(isset($current_user)): ?>
+                                <li class="<?php echo $this->Menu->activeClass('Usuarios', 'edit') ?>">
+                                    <?= $this->Html->link('Mi perfil', ['controller' => 'Usuarios', 'action' => 'edit']) ?><span class="fa fa-user " style="color:white"></span>
+                                </li>
                                 <li class="<?php echo $this->Menu->activeClass('Favoritos', 'index') ?>">
                                     <?= $this->Html->link('Mis favoritos', ['controller' => 'Favoritos', 'action' => 'index']) ?><span class="fa fa-star " style="color:white"></span>
                                 </li>

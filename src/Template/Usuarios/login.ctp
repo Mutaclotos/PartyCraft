@@ -34,17 +34,18 @@
 					</div>
 					<!--<div class="etc-login-form">
 						<p>forgot your password? <a href="#">click here</a></p>
-						<?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?>
+						
 					</div>-->
 				<?= $this->Form->end() ?>
+					
 			</div>
 		</div>
 		
 		
 		<div class="col-sm-10 col-sm-offset-1 ">
-			<h2>¿No tienes cuenta? Crea una.</h2>	
-			 <button type="submit" name="submit" class="btn btn-lg" required="required"><?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?></button>
-			 
+			<h4>¿No tienes cuenta? Crea una.</h4>	
+			 <!--<button type="submit" name="submit" class="btn btn-lg" required="required"><?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?></button>-->
+			 <?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add'], ['class' => 'btn btn-sm btn-info']) ?>
 		
 
 		</div>

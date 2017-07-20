@@ -97,11 +97,11 @@ class UsuariosController extends AppController
         if ($this->request->is('post')) {
             debug($this->request->data);
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->data);
-            debug($usuario); die;
+            //debug($usuario); die;
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('El usuario ha sido guardado.'));
+                $this->Flash->success(__('Te has registrado exitósamente.'));
 
-                return $this->redirect(['controller' => 'Usuarios','action' => 'index']);
+                return $this->redirect(['controller' => 'Usuarios','action' => 'login']);
             }
             $this->Flash->error(__('El usuario no pudo ser guardado. Por favor, inténtelo nuevamente.'));
         }
@@ -116,8 +116,9 @@ class UsuariosController extends AppController
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit()
     {
+        $id = $this->Auth->User('id');
         $this->active_item = "edit";
         $usuario = $this->Usuarios->get($id, [
             'contain' => []
@@ -127,7 +128,7 @@ class UsuariosController extends AppController
             if ($this->Usuarios->save($usuario)) {
                 $this->Flash->success(__('El perfil fue modificado exitósamente.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Pages','action' => 'home']);
             }
             $this->Flash->error(__('El perfil no pudo ser modificado. Por favor, inténtelo nuevamente.'));
         }

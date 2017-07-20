@@ -45,13 +45,13 @@
                         <div class="form-group col-sm-5">
                               <label for="sel1">Cantón:</label>
                           <select class="form-control" id="sel1">
-                            <option>San José</option>
-                            <option>Alajuela</option>
-                            <option>Cartago</option>
-                            <option>Heredia</option>
-                            <option>Limón</option>
-                            <option>Puntarenas</option>
-                            <option>Guanacaste</option>
+                            <option>Curridabat</option>
+                            <option>Concepción de Tres Ríos</option>
+                            <option>Montes de Oca</option>
+                            <option>San Pedro</option>
+                            <option>Pavas</option>
+                            <option>Sabanilla</option>
+                            <option>Tres Ríos</option>
                           </select>
                         </div> 
                         

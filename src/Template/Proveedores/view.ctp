@@ -113,9 +113,10 @@
 			            <?php if(isset($current_user)): ?>
 			            	<?php if($numResults == 0): ?>
 								<br>
-									<!--<//?= $this->Form->postLink('Agregar a favoritos', ['controller' => 'Favoritos', 'action' => 'add', $proveedor->id], ['confirm' => '¿Agregar favorito?', 'class' => 'btn btn-sm btn-info']) ?>-->
+									
 									 <div class="center wow fadeInDown animated form-group"  >
-									<button type="submit" class="btn btn-success btn-lg" required="required"><a onclick="setFavorito(<?= $proveedor->id ?>);">Agregar a favoritos</a></button>
+									 	<?= $this->Form->postLink('Agregar a favoritos', ['controller' => 'Favoritos', 'action' => 'add', $proveedor->id], ['confirm' => '¿Agregar favorito?', 'class' => 'btn btn-sm btn-info']) ?>
+									<!--<button type="submit" class="btn btn-success btn-lg" required="required"><a onclick="setFavorito(<?= $proveedor->id ?>);">Agregar a favoritos</a></button>-->
 									</div>
 								</br>
 							<?php endif; ?>
@@ -132,17 +133,13 @@
 	        	 
 	            <div class="container">
 	                <div class="row">
-	                    <div class="col-sm-5 text-center">
-	                        <div class="gmap">
-	                            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=JoomShaper,+Dhaka,+Dhaka+Division,+Bangladesh&amp;aq=0&amp;oq=joomshaper&amp;sll=37.0625,-95.677068&amp;sspn=42.766543,80.332031&amp;ie=UTF8&amp;hq=JoomShaper,&amp;hnear=Dhaka,+Dhaka+Division,+Bangladesh&amp;ll=23.73854,90.385504&amp;spn=0.001515,0.002452&amp;t=m&amp;z=14&amp;iwloc=A&amp;cid=1073661719450182870&amp;output=embed"></iframe>
-	                        </div>
-	                    </div>
+	                  
 	
-	                    <div class="col-sm-7 map-content">
+	                    <div class="col-sm-7 map-content ">
 	                        <ul class="row">
 	                            <li class="col-sm-6">
 	                                <address>
-	                                    <h5>Contacto</h5>
+	                                    <h5>Contacto </h5>
 	                                    <?= h($proveedor->ubicacion) ?>
 	                                     <?php foreach ($contactos as $contacto): ?>
 								            <p class="list-group-item-text">
@@ -161,24 +158,24 @@
                             <div class="status alert alert-success" style="display: none"></div>
                             <div class="message_heading">
                                 <h4>Deja un Comentario</h4>
-                                <p>Si utilizaste los servicios de este proveedor, vamos comenta como te fué</p>
+                                <p>Si utilizaste los servicios de este proveedor, comenta tu experiencia.</p>
                             </div> 
       
                             <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php" role="form">
                                 <div class="row">
                                     <div class="col-sm-8">
-                                        <div class="form-group">
-                                            <label>Nombre de Usuario *</label>
-                                            <input type="text" class="form-control" required>
-                                        </div>
+                                        
                                                          
-                                        <div class="form-group">
-                                            <label>Mensaje *</label>
-                                            <textarea name="message" id="message" required class="form-control" rows="8"></textarea>
-                                        </div>                        
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>
-                                        </div>
+                                        <?= $this->Form->create($comentariosProveedores) ?>
+								        <fieldset>
+								            <?php
+								                echo $this->Form->input('contenido', ['Placeholder' => 'Escribir un comentario...']);
+								                echo $this->Form->input('puntaje', ['type'=>'numbers' ,'Placeholder' => 'Dale un puntaje al proveedor']);
+								                
+								            ?>
+								        </fieldset>
+								        <?= $this->Form->button('Agregar comentario') ?>
+								        <?= $this->Form->end() ?>
                                     </div>
                                 </div>
                             </form>     
@@ -204,17 +201,18 @@
 	                                <a href="#"><img src="images/blog/girl.png" class="img-circle" alt="" /></a>
 	                            </div>
 	                                <h3><?= h($comentariosUsuarios[$counter]->Usuarios->username) ?></h3>
-	                                <?php if(intval($comentario->puntaje) == 1): ?>
-    	    							<?= $this->Html->image('../img/1_stars.png'); ?>
-						    	    <?php elseif(intval( $comentario->puntaje) == 2): ?>
-						    	    	<?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?>
-						    	    <?php elseif(intval($comentario->puntaje) == 3): ?>
-						    	    	<?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?>
-						    	    <?php elseif(intval($comentario->puntaje) == 4): ?>
-						    	    	<?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?>
-						    	    <?php else: ?>
-						    	    	<?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?><?= $this->Html->image('../img/1_stars.png'); ?>
-						    	    <?php endif; ?>
+				            	 <?php if(intval( $comentario->puntaje) == 1): ?>
+					    	    	<span class="fa fa-star"></span>
+					    	    <?php elseif(intval( $comentario->puntaje) == 2): ?>
+					    	    	<span class="fa fa-star"></span><span class="fa fa-star"></span>
+					    	    <?php elseif(intval( $comentario->puntaje) == 3): ?>
+					    	    	<span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+					    	    <?php elseif(intval(  $comentario->puntaje) == 4): ?>
+					    	    <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+					    	    <?php else: ?>
+					    	    	<span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+					    	    <?php endif; ?>
+
 	                                <h4><?= h($comentario->fecha) ?></h4>
 	                                <p><?= h($comentario->contenido) ?></p>
 	                            </div>

@@ -858,8 +858,8 @@ a.accordion-toggle  i{
 }
 
 .nav-tabs>li>a {
-  background: #f5f5f5;
-  color: #666;
+  background: #222222;
+  color: #777;
   border-radius: 0;
   border: 0 none;
   line-height: 24px;
@@ -877,7 +877,7 @@ a.accordion-toggle  i{
 
 .nav-tabs>li>a:hover{
   background: #1f1f20;
-  color:#fff;
+  color:##080808;
 }
 
 .nav-tabs>li.active>a, 

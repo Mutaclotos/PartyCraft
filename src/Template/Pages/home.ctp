@@ -39,7 +39,7 @@
                             <div class="row slide-margin">
                                 <div class="col-sm-6">
                                     <div class="carousel-content">
-                                        <h1 class="animation animated-item-1">Bienvenido a PartyCraft</h1>
+                                        <h1 class="animation animated-item-1">¡Bienvenido a PartyCraft!</h1>
                                         <h2 class="animation animated-item-2">La página ideal para planear todos tus eventos</h2>
                                         <a> <?= $this->Html->link('Crea tu evento', ['controller' => 'Proveedores', 'action' => 'adsearch'], ['class' => 'btn-slide animation animated-item-3']) ?></a>
                                     </div>
@@ -62,8 +62,8 @@
                             <div class="row slide-margin">
                                 <div class="col-sm-6">
                                     <div class="carousel-content">
-                                        <h1 class="animation animated-item-1">Convierte en tu propio organizador</h1>
-                                        <h2 class="animation animated-item-2">crea el evento perfecto, para cualquier ocasión</h2>
+                                        <h1 class="animation animated-item-1">Conviértete en tu propio organizador de eventos especiales</h1>
+                                        <h2 class="animation animated-item-2">Crea el evento perfecto, para cualquier ocasión</h2>
                                         <a> <?= $this->Html->link('Crea tu evento', ['controller' => 'Proveedores', 'action' => 'adsearch'], ['class' => 'btn-slide animation animated-item-3']) ?></a>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
             <div class="container">
                <div class="center wow fadeInDown">
                     <h2>Utilidades en Eventos:</h2>
-                    <p class="lead">Nuestra página es muy útil para cualquier evento que puedas tener</p>
+                    <p class="lead">Partycraft es la opción más conveniente para cualquier evento que quieras organizar.</p>
                 </div>
     
                 <div class="row">
@@ -114,7 +114,7 @@
                             <div class="feature-wrap">
                                 <i class="fa fa-file"></i>
                                 <h2>Corporativos</h2>
-                                <h3>Haz que todos se diviertan y el jefe quiera acender.</h3>
+                                <h3>Haz que todos se diviertan en un ambiente laboral.</h3>
                             </div>
                         </div><!--/.col-md-4-->
     
@@ -158,7 +158,7 @@
 	   <div class="container">
             <div class="center wow fadeInDown">
                 <h2>Servicios y Ventajas</h2>
-                <p class="lead">Te queremos facilitar como organizas tus eventos, por eso te recordamos que:</p>
+                <p class="lead">Te queremos facilitar la organización de tus eventos, por eso te recordamos que:</p>
             </div>
 
             <div class="row">
@@ -171,7 +171,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Rankings</h3>
-                            <p>Puedes ver los mejor provedores del mercado.</p>
+                            <p>Puedes ver los mejores proveedores del mercado.</p>
                         </div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Rápido</h3>
-                            <p>Tines todo a la mano, para que puedas ahorar tiempo</p>
+                            <p>Tienes todo a la mano, para que puedas ahorrar tiempo</p>
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Ideas</h3>
-                            <p>Mira todas las categorias, y verás cosas nuevas</p>
+                            <p>Explora las categorias y encontrarás nuevas opciones</p>
                         </div>
                     </div>
                 </div>
@@ -236,7 +236,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Te salvamos</h3>
-                            <p>Muchas opciones para que siempra tengas lo que ocupas</p>
+                            <p>Encuentra al proveedor que has estado buscando</p>
                         </div>
                     </div>
                 </div>                                                
@@ -256,7 +256,7 @@
                             </div>
                             <div class="media-body">
                                 <h2>¿Tienes preguntas?</h2>
-                                <p>Si tienes problemas o alguna sugerencia para mejorar, llamanos al (506)-2525-4141</p>
+                                <p>Si tienes problemas o alguna sugerencia para mejorar, llámanos al (506)-2525-4141</p>
                             </div>
                         </div>
                     </div>
