@@ -280,7 +280,7 @@ input.search-form:hover {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  padding: 5px 12px;
+  padding: 30px 12px;
   margin: 0;
   border-radius: 3px;
   color: #fff;
@@ -652,7 +652,7 @@ input.search-form:hover {
 }
 
 #services {
-  background: #000 url(../images/services/bg_services.png);
+  background: #000 url(../img/services/bg_services.png);
   background-size: cover;
 }
 
@@ -949,7 +949,7 @@ a.accordion-toggle  i{
 }
 
 #partner {
-  background: url(../images/partners/partner_bg.png) 50% 50% no-repeat;
+  background: url(../img/partners/partner_bg.png) 50% 50% no-repeat;
   background-size: cover;
 }
 
@@ -1889,7 +1889,7 @@ ul.social_icons li  a i{
 **************************/
 
 .gmap-area {
-  background-image: url("../images/map.jpg");
+  background-image:url(../img/map.jpg);
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;

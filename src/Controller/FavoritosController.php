@@ -53,18 +53,15 @@ class FavoritosController extends AppController
                 ->where(['Proveedores.id' => $this->idProveedor]));*/
     public function index()
     {
-        $providers = TableRegistry::get('Proveedores');
-        $favourites = TableRegistry::get('Favoritos');
         
         $this->loadModel('Proveedores'); 
         
-       
-                
         $query = $this->Favoritos->find()
                                  ->contain(['Proveedores'])
                                  ->select(['Proveedores.id','Proveedores.nombre', 'Proveedores.puntajeGlobal', 'Proveedores.descripcion', 
                                  'Proveedores.ubicacion', 'Proveedores.latitud', 'Proveedores.longitud', 'Proveedores.logo'])
                                  ->where(['Favoritos.nombreUsuario' => $this->Auth->User('id')]);
+                                 
 
         //debug($query);
         /*foreach ($query as $article) {
@@ -73,6 +70,12 @@ class FavoritosController extends AppController
         $favoritos = $this->paginate($query);
         $this->set('favoritos', $favoritos);
         
+        $query = $this->Favoritos->find()
+                                 ->select(['Favoritos.id'])
+                                 ->where(['Favoritos.nombreUsuario' => $this->Auth->User('id')]);
+        
+        $favoritoid = $query->toArray();
+        $this->set('favoritoid', $favoritoid);                         
     }
 
     /**
@@ -97,23 +100,29 @@ class FavoritosController extends AppController
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
-        $this->autoRender = false;
+        //$this->autoRender = false;
+        $data = [
+            'nombreUsuario' => $this->Auth->User('id'),
+            'idProveedor' => $id];
         $favorito = $this->Favoritos->newEntity();
         if ($this->request->is('post')) {
-            $favorito = $this->Favoritos->patchEntity($favorito, $this->request->data);
+            $favorito = $this->Favoritos->patchEntity($favorito, $data);
+            //debug($favorito); die;
             if ($this->Favoritos->save($favorito)) {
                 $this->Flash->success(__('El proveedor ha sido guardado como favorito.'));
 
                 //return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('El proveedor no pudo ser guardado como favorito. Por favor inténtelo de nuevo.'));
+            else
+            {
+                $this->Flash->error(__('El proveedor no pudo ser guardado como favorito. Por favor inténtelo de nuevo.'));
+            }
         }
         $usuarios = $this->Favoritos->Usuarios->find('list', ['limit' => 200]);
         $this->set(compact('favorito', 'usuarios'));
         $this->set('_serialize', ['favorito', 'usuarios']);
-        echo 'refresh';
     }
 
     /**

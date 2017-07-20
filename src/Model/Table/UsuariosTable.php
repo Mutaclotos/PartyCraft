@@ -37,7 +37,7 @@ class UsuariosTable extends Table
         $this->primaryKey('id');
 
         $this->hasMany('Comentarios', [
-            'foreignKey' => 'usuario_comentario'
+            'foreignKey' => 'usuario_id'
         ]);
         
         $this->hasMany('Favoritos', [

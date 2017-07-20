@@ -96,11 +96,19 @@ class AppController extends Controller
     
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['index', 'view', 'display', 'home', 'add', 'edit', 'getContacts']);
+        $this->Auth->allow(['index', 'view', 'display', 'home', 'add', 'getContacts', 'getCategoria', 'search', 'adsearch']);
+        
+        if($this->request->is('post') && isset($this->request->data['nombre']))
+            {
+                return $this->redirect(['controller' => 'Proveedores', 'action' => 'search', $this->request->data['nombre']]);
+            }
     }
     
     public function isAuthorized($user)
     {
         return true;
     }
+    
+
+    
 }

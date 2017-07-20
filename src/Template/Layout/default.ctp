@@ -13,10 +13,12 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'PartyCraft!';
+
 ?>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,70 +40,76 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->Html->css(['bootstrap.min.css', 'stylesheet']) ?>
         <?= $this->Html->script(['jquery-3.2.1.min', 'bootstrap.min']) ?>
     
-        <?= $this->Html->meta('icon') ?>
+        
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
+        <link rel="shortcut icon" href="/favicon.ico" /> 
+        
         
     </head>
+    
     <body>
         
         <header id="header">
             <nav class="navbar navbar-inverse" role="banner">
                 <div class="container">
+                    <?= $this->Html->image('../img/logo.png'); ?>
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand"  <?= $this->Html->link('PartyCraft', ['controller' => 'Pages', 'action' => 'home'], ['class' => 'navbar-brand']) ?>>
-                            <img src="images/logo.png" alt="logo"></a>
+ 
+                        <a class="navbar-brand"  <?= $this->Html->link('PartyCarft',['controller' => 'Pages', 'action' => 'home'], ['class' => 'navbar-brand']) ?>>
+                             
+                            
                     </div>
-    				
-                    <div class="collapse navbar-collapse navbar-right">
+    				<font size = '4'>
+                    <div class="collapse navbar-collapse navbar-right text-center" >
                         <ul class="nav navbar-nav">
                             <li class="<?php echo $this->Menu->activeClass('Pages', 'home') ?>">
                                 <?= $this->Html->link('Inicio', ['controller' => 'Pages', 'action' => 'home']) ?>
                             </li>
-                            <li class="<?php echo $this->Menu->activeClass('Usuarios', 'index') ?>">
-                                <?= $this->Html->link('Ver usuarios', ['controller' => 'Usuarios', 'action' => 'index']) ?>
+                            <!--<li class="<//?php echo $this->Menu->activeClass('Usuarios', 'index') ?>">
+                                <//?= $this->Html->link('Ver usuarios', ['controller' => 'Usuarios', 'action' => 'index']) ?>
+                            </li>-->
+                            
+                            <li class="<?php echo $this->Menu->activeClass('Proveedores', 'search') ?>">
+                                <?= $this->Html->link('Crea tu evento', ['controller' => 'Proveedores', 'action' => 'adsearch']) ?>
                             </li>
+                            
                             <li class="<?php echo $this->Menu->activeClass('Proveedores', 'index') ?>">
                                 <?= $this->Html->link('Ver proveedores', ['controller' => 'Proveedores', 'action' => 'index']) ?>
                             </li>
-                            <li class="dropdown">
+                            <!--<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="blog-item.html">Blog Single</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                             <?php if(isset($current_user)): ?>
                                 <li class="<?php echo $this->Menu->activeClass('Favoritos', 'index') ?>">
-                                    <?= $this->Html->link('Mis favoritos', ['controller' => 'Favoritos', 'action' => 'index']) ?>
+                                    <?= $this->Html->link('Mis favoritos', ['controller' => 'Favoritos', 'action' => 'index']) ?><span class="fa fa-star " style="color:white"></span>
                                 </li>
                                 
                                 <li>
-                                    <?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?>
+                                    <?= $this->Html->link('Salir', ['controller' => 'Usuarios', 'action' => 'logout']) ?><span class="fa fa-sign-out " style="color:white"></span>
                                 </li>
                             <?php else: ?>
 
                                 <li class="<?php echo $this->Menu->activeClass('Usuarios', 'login') ?>"> 
-                                    <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?><span class="glyphicon glyphicon-log-in"></span>
+                                    <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Usuarios', 'action' => 'login']) ?><span class="fa fa-sign-in " style="color:white"></span>
                                 </li>  
                                 <li class="<?php echo $this->Menu->activeClass('Usuarios', 'add') ?>">
-                                    <?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?><span class="glyphicon glyphicon-user"></span>
+                                    <?= $this->Html->link('Registrarse', ['controller' => 'Usuarios', 'action' => 'add']) ?><span class="fa fa-user" style="color:white"></span>
                                 </li>
 
                             <?php endif; ?>
                         </ul>
                     </div>
+                    </font>
                 </div><!--/.container-->
             </nav><!--/nav-->
     		
         </header><!--/header-->
-        
+                 
         
         <?= $this->Flash->render() ?>
         <!--/<div class="container clearfix"> -->
@@ -112,60 +120,43 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h3>Company</h3>
+                        <h3>Nuestra Página</h3>
                         <ul>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">We are hiring</a></li>
-                            <li><a href="#">Meet the team</a></li>
-                            <li><a href="#">Copyright</a></li>
-                            <li><a href="#">Terms of use</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                            <li><a href="#">Contact us</a></li>
+                            <li><a>Sobre Nosotros</a></li>
+                            <li><a>Contacto</a></li>
+
                         </ul>
                     </div>    
                 </div><!--/.col-md-3-->
 
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h3>Support</h3>
+                        <h3>Profesor</h3>
                         <ul>
-                            <li><a href="#">Faq</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Forum</a></li>
-                            <li><a href="#">Documentation</a></li>
-                            <li><a href="#">Refund policy</a></li>
-                            <li><a href="#">Ticket system</a></li>
-                            <li><a href="#">Billing system</a></li>
+                            <li><a>Braulio Solano Rojas</a></li>
+                            
                         </ul>
                     </div>    
                 </div><!--/.col-md-3-->
 
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h3>Developers</h3>
+                        <h3>Proyecto</h3>
                         <ul>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">SEO Marketing</a></li>
-                            <li><a href="#">Theme</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Email Marketing</a></li>
-                            <li><a href="#">Plugin Development</a></li>
-                            <li><a href="#">Article Writing</a></li>
+                            <li><a>Curso de Aplicaciones Web</a></li>
+                            <li><a>CI-2413</a></li>
                         </ul>
                     </div>    
                 </div><!--/.col-md-3-->
 
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h3>Our Partners</h3>
+                        <h3>Creadores</h3>
                         <ul>
-                            <li><a href="#">Adipisicing Elit</a></li>
-                            <li><a href="#">Eiusmod</a></li>
-                            <li><a href="#">Tempor</a></li>
-                            <li><a href="#">Veniam</a></li>
-                            <li><a href="#">Exercitation</a></li>
-                            <li><a href="#">Ullamco</a></li>
-                            <li><a href="#">Laboris</a></li>
+                            <li><a >Scott Adams Garrido</a></li>
+                            <li><a>Jimena Machado Rodríguez</a></li>
+                            <li><a >Matías Rodríguez Singer</a></li>
+                            
                         </ul>
                     </div>    
                 </div><!--/.col-md-3-->
@@ -177,15 +168,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
-                </div>
-                <div class="col-sm-6">
-                    <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
+                    &copy; 2017 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
                 </div>
             </div>
         </div>

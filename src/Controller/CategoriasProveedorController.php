@@ -106,4 +106,18 @@ class CategoriasProveedorController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    /*
+    public function search($search = null)
+        {
+                // Action logic goes here.
+                 if ($this->request->is('post')) {
+                $pes = '%'.$this->request->data('search').'%';
+                $categoriasProveedor = $categoriasProveedor->where(['OR' => ['nombre LIKE' => $pes, 'categorias LIKE' => $pes]]);
+            }
+        }*/
+        
+      
+        
+        
+   
 }

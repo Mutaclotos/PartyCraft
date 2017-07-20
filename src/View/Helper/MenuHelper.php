@@ -3,7 +3,9 @@
 namespace App\View\Helper;
 
 use Cake\View\Helper;
+use Cake\ORM\App;
 use Cake\ORM\TableRegistry;
+
 
 class MenuHelper extends Helper 
 {
@@ -23,14 +25,12 @@ class MenuHelper extends Helper
     public function getContacts($controller, $id = null)
     {
         $modelo = TableRegistry::get('ContactosProveedor');
-
-        //$controller->loadModel('ContactosProveedor'); 
         
         $query = $modelo->find()
-                                             ->contain(['Proveedores'])
-                                             ->select(['ContactosProveedor.id', 'ContactosProveedor.descripcion',
-                                             'ContactosProveedor.contacto'])
-                                             ->where(['Proveedores.id' => $id]);
+                         ->contain(['Proveedores'])
+                         ->select(['ContactosProveedor.id', 'ContactosProveedor.descripcion',
+                         'ContactosProveedor.contacto'])
+                         ->where(['Proveedores.id' => $id]);
                                              
         return $query;
         //debug($query);

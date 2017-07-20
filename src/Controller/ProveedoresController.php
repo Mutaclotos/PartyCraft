@@ -44,7 +44,9 @@ class ProveedoresController extends AppController
         $this->active_item = "view";
         $this->loadModel('Favoritos'); 
         $this->loadModel('FotosProveedor'); 
-        $this->loadModel('ContactosProveedor'); 
+        $this->loadModel('ContactosProveedor');
+        $this->loadModel('Comentarios');
+        $this->loadModel('Usuarios');
         
         //Consulta para obtener los contactos del proveedor
         $query = $this->ContactosProveedor->find()
@@ -86,6 +88,29 @@ class ProveedoresController extends AppController
 
         $this->set('proveedor', $proveedor);
         $this->set('_serialize', ['proveedor']);
+        
+        //Consulta para cargar los comentarios del proovedor
+        
+        $query = $this->Comentarios->find()
+                                 ->contain(['Proveedores'])
+                                 ->select(['Comentarios.fecha', 'Comentarios.puntaje','Comentarios.contenido','Comentarios.likes','Comentarios.dislikes'])
+                                 ->where(['Proveedores.id' => $id]);
+                                 
+        $this->set('comentariosProveedores', $query);
+        
+        //debug($query);
+        
+        $query = $this->Comentarios->find()
+                                 ->contain(['Proveedores', 'Usuarios'])
+                                 ->select(['Usuarios.username'])
+                                 ->where(['Proveedores.id' => $id]);
+                                 
+                                 
+        $comentUs = $query->toArray();
+        
+        $this->set('comentariosUsuarios', $comentUs);
+        
+        //debug($query);
     }
 
     /**
@@ -153,4 +178,39 @@ class ProveedoresController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+    
+        public function adsearch()
+        {
+            
+        }
+    
+    
+    
+      public function search($search_key)
+        {
+            $this->loadModel('Categorias'); 
+        
+        
+            $proveedores = $this->paginate($this->Proveedores);
+            $categorias = $this->paginate($this->Categorias);
+    
+            $this->set('proveedores', $proveedores);
+            $this->set('categorias', $categorias);
+            
+           $query = $this->Proveedores->find()
+                                 ->select(['Proveedores.id','Proveedores.nombre', 'Proveedores.puntajeGlobal', 'Proveedores.descripcion', 
+                                 'Proveedores.ubicacion', 'Proveedores.latitud', 'Proveedores.longitud', 'Proveedores.logo'])
+                                 ->where(["OR" => [
+                                        "Proveedores.nombre LIKE" => "%".$search_key."%",
+                                        "Proveedores.descripcion LIKE" => "%".$search_key."%"]]);
+           
+           
+           $this->set('proveedores', $query);
+           $this->render('/Proveedores/index');
+        }
+        
+        
+
+    
 }

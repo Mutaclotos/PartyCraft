@@ -87,4 +87,4 @@ Router::scope("/usuarios", function($routes){
  */
 Plugin::routes();
 
-Router::extensions(['json']);
+Router::extensions(['json', 'xml']);

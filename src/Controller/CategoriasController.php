@@ -38,21 +38,26 @@ class CategoriasController extends AppController
         
         $query = $this->CategoriasProveedor->find()
                                              ->contain(['Categorias', 'Proveedores'])
-                                             ->select(['Proveedor.id', 'Proveedor.nombre', 'Proveedor.puntajeGlobal',
-                                             'Proveedor.descripcion', 'Proveedor.ubicacion'])
+                                             ->select(['Proveedores.id', 'Proveedores.nombre', 'Proveedores.puntajeGlobal',
+                                             'Proveedores.descripcion', 'Proveedores.ubicacion'])
                                              ->where(['Categorias.id' => $id]);
         
         //debug($query);
+        $categoria = $this->paginate($query);
+        $this->set('categoriaProveedores', $categoria);
         
-        $this->set('categoriaProveedores', $query);
+        $query = $this->Categorias->find()
+                                        ->select(['Categorias.id', 'Categorias.nombreCategoria', 'Categorias.descripcion', 'Categorias.icono'])
+                                        ->where(['Categorias.id' => $id]);
+        //debug($query);
+        
+        $this->set('categoria', $this->paginate($query));
+        $this->set('_serialize', ['categoria']);
         $this->set('_serialize', ['categoriaProveedores']);
-        /*$categoria = $this->Categorias->get($id, [
-            'contain' => []
-        ]);
         
-        $this->set('categoria', $categoria);*/
-        $this->set(compact('categorias'));
-        $this->set('_serialize', ['categorias']);
+        //$this->set('categoria', $categoria);
+        //$this->set(compact('categorias'));
+        //$this->set('_serialize', ['categorias']);
     }
 
     /**
